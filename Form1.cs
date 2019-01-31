@@ -66,8 +66,6 @@ namespace SRBD
                     {
                         comboBox4.Items.Add(sqlReader2["prod_id"].ToString());
                         comboBox2.Items.Add(sqlReader2["prod_id"].ToString());
-                        comboBox5.Items.Add(sqlReader2["prod_id"].ToString());
-                        comboBox6.Items.Add(sqlReader2["prod_id"].ToString());
 
                     }
 
@@ -84,10 +82,7 @@ namespace SRBD
             string query = "select pro_id as ID,pro_nazwa as Nazwa, pro_cena as Cena from Produkt where prod_id='" + a + "';";
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+
             dataGridView2.DataSource = dt;
             conn.Close();
             da.Dispose();
@@ -123,16 +118,7 @@ namespace SRBD
             conn.Close();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = new SqlConnection(connString);
-            conn.Open();
-            string query = "UPDATE Produkt set prod_id ='" + comboBox4.SelectedItem + "',pro_nazwa='" + textBox4.Text + "',pro_cena ='" + textBox3.Text + "' where pro_id='" + comboBox3.SelectedItem + "';";
-            SqlCommand dmd = new SqlCommand(query, conn);
-            dmd.ExecuteNonQuery();
-            conn.Close();
-            dataGridView1.Update();
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
